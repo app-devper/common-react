@@ -1,8 +1,7 @@
 import AuthRepository from '../../repository/auth/AuthRepository';
 import AuthHolder from '../../entity/auth/AuthHolder';
-import LoginParam from "../../entity/auth/LoginParam";
 
-export default class LoginUseCase {
+export default class KeepAliveUseCase {
   private authRepository: AuthRepository;
   private authHolder: AuthHolder;
 
@@ -11,11 +10,8 @@ export default class LoginUseCase {
     this.authHolder = authHolder;
   }
 
-  public async loginUser(param: LoginParam): Promise<void> {
-    if (!param.username || !param.password) {
-      return Promise.reject(new Error("Params invalid"))
-    }
-    const authResult = await this.authRepository.login(param);
+  public async keepAlive(): Promise<void> {
+    const authResult = await this.authRepository.keepAlive();
     this.authHolder.onSignedIn(authResult.accessToken);
   }
 }

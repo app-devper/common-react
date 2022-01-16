@@ -1,9 +1,11 @@
 import ClientService from "./data/datasource/network/ClientService";
-import { LocalDataSourceImpl } from "./data/datasource/local/LocalDatasource";
+import LocalDataSourceImpl from "./data/datasource/local/LocalDataSourceImpl";
 import AuthRepositoryImpl from "./data/repository/auth/AuthRepositoryImpl";
+import UserRepositoryImpl from "./data/repository/user/UserRepositoryImpl";
+
 import AuthRepository from "./domain/repository/auth/AuthRepository";
 import UserRepository from "./domain/repository/user/UserRepository";
-import UserRepositoryImpl from "./data/repository/user/UserRepositoryImpl";
+
 import { baseUrl } from "./Const";
 import AuthHolder from "./domain/entity/auth/AuthHolder";
 

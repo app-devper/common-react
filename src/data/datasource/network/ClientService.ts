@@ -1,6 +1,3 @@
-import LoginBody from "../../model/auth/LoginBody";
-import ChangePasswordBody from "../../model/auth/ChangePasswordBody";
-
 export default class ClientService {
 
   private readonly baseUrl: string
@@ -9,13 +6,34 @@ export default class ClientService {
     this.baseUrl = baseUrl
   }
 
-  login(body: LoginBody): Promise<Response> {
+  login(body: string): Promise<Response> {
     return fetch(`${this.baseUrl}/api/v1/auth/login`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json;charset=UTF-8',
       },
-      body: JSON.stringify(body),
+      body: body,
+    })
+  }
+
+  keepAlive(token: string): Promise<Response> {
+    return fetch(`${this.baseUrl}/api/v1/user/keep-alive`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json;charset=UTF-8',
+        'authorization': `Bearer ${token}`,
+      }
+    })
+  }
+
+  createUser(body: string, token: string): Promise<Response> {
+    return fetch(`${this.baseUrl}/api/v1/user`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json;charset=UTF-8',
+        'authorization': `Bearer ${token}`,
+      },
+      body: body,
     })
   }
 
@@ -26,6 +44,17 @@ export default class ClientService {
         'content-type': 'application/json;charset=UTF-8',
         'authorization': `Bearer ${token}`,
       }
+    })
+  }
+
+  updateUserInfo(body: string, token: string): Promise<Response> {
+    return fetch(`${this.baseUrl}/api/v1/user/info`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json;charset=UTF-8',
+        'authorization': `Bearer ${token}`,
+      },
+      body: body,
     })
   }
 
@@ -49,14 +78,35 @@ export default class ClientService {
     })
   }
 
-  changePassword(body: ChangePasswordBody, token: string): Promise<Response> {
+  updateUserById(userId: string, body: string, token: string): Promise<Response> {
+    return fetch(`${this.baseUrl}/api/v1/user/${userId}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json;charset=UTF-8',
+        'authorization': `Bearer ${token}`,
+      },
+      body: body,
+    })
+  }
+
+  removeUserById(userId: string, token: string): Promise<Response> {
+    return fetch(`${this.baseUrl}/api/v1/user/${userId}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json;charset=UTF-8',
+        'authorization': `Bearer ${token}`,
+      }
+    })
+  }
+
+  changePassword(body: string, token: string): Promise<Response> {
     return fetch(`${this.baseUrl}/api/v1/user/change-password`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json;charset=UTF-8',
         'authorization': `Bearer ${token}`,
       },
-      body: JSON.stringify(body),
+      body: body,
     })
   }
 
