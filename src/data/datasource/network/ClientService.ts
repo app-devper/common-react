@@ -1,113 +1,111 @@
 export default class ClientService {
-
   private readonly baseUrl: string
 
-  constructor(baseUrl: string) {
+  constructor (baseUrl: string) {
     this.baseUrl = baseUrl
   }
 
-  login(body: string): Promise<Response> {
+  login (body: string): Promise<Response> {
     return fetch(`${this.baseUrl}/api/v1/auth/login`, {
       method: 'POST',
       headers: {
-        'content-type': 'application/json;charset=UTF-8',
+        'content-type': 'application/json;charset=UTF-8'
       },
-      body: body,
+      body
     })
   }
 
-  keepAlive(token: string): Promise<Response> {
+  keepAlive (token: string): Promise<Response> {
     return fetch(`${this.baseUrl}/api/v1/user/keep-alive`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json;charset=UTF-8',
-        'authorization': `Bearer ${token}`,
+        authorization: `Bearer ${token}`
       }
     })
   }
 
-  createUser(body: string, token: string): Promise<Response> {
+  createUser (body: string, token: string): Promise<Response> {
     return fetch(`${this.baseUrl}/api/v1/user`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json;charset=UTF-8',
-        'authorization': `Bearer ${token}`,
+        authorization: `Bearer ${token}`
       },
-      body: body,
+      body
     })
   }
 
-  getUserInfo(token: string): Promise<Response> {
+  getUserInfo (token: string): Promise<Response> {
     return fetch(`${this.baseUrl}/api/v1/user/info`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json;charset=UTF-8',
-        'authorization': `Bearer ${token}`,
+        authorization: `Bearer ${token}`
       }
     })
   }
 
-  updateUserInfo(body: string, token: string): Promise<Response> {
+  updateUserInfo (body: string, token: string): Promise<Response> {
     return fetch(`${this.baseUrl}/api/v1/user/info`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json;charset=UTF-8',
-        'authorization': `Bearer ${token}`,
+        authorization: `Bearer ${token}`
       },
-      body: body,
+      body
     })
   }
 
-  getUsers(token: string): Promise<Response> {
+  getUsers (token: string): Promise<Response> {
     return fetch(`${this.baseUrl}/api/v1/user`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json;charset=UTF-8',
-        'authorization': `Bearer ${token}`,
+        authorization: `Bearer ${token}`
       }
     })
   }
 
-  getUserById(userId: string, token: string): Promise<Response> {
+  getUserById (userId: string, token: string): Promise<Response> {
     return fetch(`${this.baseUrl}/api/v1/user/${userId}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json;charset=UTF-8',
-        'authorization': `Bearer ${token}`,
+        authorization: `Bearer ${token}`
       }
     })
   }
 
-  updateUserById(userId: string, body: string, token: string): Promise<Response> {
+  updateUserById (userId: string, body: string, token: string): Promise<Response> {
     return fetch(`${this.baseUrl}/api/v1/user/${userId}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json;charset=UTF-8',
-        'authorization': `Bearer ${token}`,
+        authorization: `Bearer ${token}`
       },
-      body: body,
+      body
     })
   }
 
-  removeUserById(userId: string, token: string): Promise<Response> {
+  removeUserById (userId: string, token: string): Promise<Response> {
     return fetch(`${this.baseUrl}/api/v1/user/${userId}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json;charset=UTF-8',
-        'authorization': `Bearer ${token}`,
+        authorization: `Bearer ${token}`
       }
     })
   }
 
-  changePassword(body: string, token: string): Promise<Response> {
+  changePassword (body: string, token: string): Promise<Response> {
     return fetch(`${this.baseUrl}/api/v1/user/change-password`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json;charset=UTF-8',
-        'authorization': `Bearer ${token}`,
+        authorization: `Bearer ${token}`
       },
-      body: body,
+      body
     })
   }
-
 }

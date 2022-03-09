@@ -1,21 +1,18 @@
-import AuthRepository from '../../repository/auth/AuthRepository';
-import AuthHolder from '../../entity/auth/AuthHolder';
-import LoginParam from "../../entity/auth/LoginParam";
+import AuthRepository from '../../repository/AuthRepository'
+import LoginParam from '../../entity/auth/LoginParam'
+import Login from '../../entity/auth/Login'
 
 export default class LoginUseCase {
-  private authRepository: AuthRepository;
-  private authHolder: AuthHolder;
+  private authRepository: AuthRepository
 
-  public constructor(authRepository: AuthRepository, authHolder: AuthHolder) {
-    this.authRepository = authRepository;
-    this.authHolder = authHolder;
+  public constructor (authRepository: AuthRepository) {
+    this.authRepository = authRepository
   }
 
-  public async loginUser(param: LoginParam): Promise<void> {
+  public async loginUser (param: LoginParam): Promise<Login> {
     if (!param.username || !param.password) {
-      return Promise.reject(new Error("Params invalid"))
+      return Promise.reject(new Error('Params invalid'))
     }
-    const authResult = await this.authRepository.login(param);
-    this.authHolder.onSignedIn(authResult.accessToken);
+    return this.authRepository.login(param)
   }
 }

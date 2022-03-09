@@ -1,30 +1,33 @@
-import ClientService from "./data/datasource/network/ClientService";
-import LocalDataSourceImpl from "./data/datasource/local/LocalDataSourceImpl";
-import AuthRepositoryImpl from "./data/repository/auth/AuthRepositoryImpl";
-import UserRepositoryImpl from "./data/repository/user/UserRepositoryImpl";
+import ClientService from './data/datasource/network/ClientService'
+import LocalDataSourceImpl from './data/datasource/local/LocalDataSourceImpl'
+import AuthRepositoryImpl from './data/repository/AuthRepositoryImpl'
+import UserRepositoryImpl from './data/repository/UserRepositoryImpl'
 
-import AuthRepository from "./domain/repository/auth/AuthRepository";
-import UserRepository from "./domain/repository/user/UserRepository";
-
-import { baseUrl } from "./Const";
-import AuthHolder from "./domain/entity/auth/AuthHolder";
+import { baseUrl } from './Const'
+import AuthHolder from './domain/entity/auth/AuthHolder'
+import LoginUseCase from './domain/interactors/auth/LoginUseCase'
+import AuthRepository from './domain/repository/AuthRepository'
+import UserRepository from './domain/repository/UserRepository'
 
 export default class Container {
-
   private clientService = new ClientService(baseUrl)
   private localDataSource = new LocalDataSourceImpl()
   private authHolder = new AuthHolder()
 
-  getAuthHolder(): AuthHolder {
+  getAuthHolder (): AuthHolder {
     return this.authHolder
   }
 
-  getAuthRepository(): AuthRepository {
+  getAuthRepository (): AuthRepository {
     return new AuthRepositoryImpl(this.clientService, this.localDataSource)
   }
 
-  getUserRepository(): UserRepository {
+  getUserRepository (): UserRepository {
     return new UserRepositoryImpl(this.clientService, this.localDataSource)
   }
 
+  // UseCase
+  getLoginUseCase (): LoginUseCase {
+    return new LoginUseCase(this.getAuthRepository())
+  }
 }

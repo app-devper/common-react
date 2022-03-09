@@ -1,7 +1,7 @@
-import User from "../../entity/user/User";
-import ChangePasswordParam from "../../entity/user/ChangePasswordParam";
-import CreateUserParam from "../../entity/user/CreateUserParam";
-import UpdateUserParam from "../../entity/user/UpdateUserParam";
+import User from '../entity/user/User'
+import ChangePasswordParam from '../entity/user/ChangePasswordParam'
+import CreateUserParam from '../entity/user/CreateUserParam'
+import UpdateUserParam from '../entity/user/UpdateUserParam'
 
 export default interface UserRepository {
 

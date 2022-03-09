@@ -1,18 +1,18 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import './App.css';
-import AuthPage from './presentation/auth/AuthPage';
-import Container from './Container';
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import './App.css'
+import Container from './Container'
+import { LoginComponent } from './presentation/auth/view/LoginComponent'
 
-function App() {
+const App = () => {
   const container = new Container()
   return (
     <div className="app-container d-flex container-fluid">
       <Routes>
-        <Route path="/" element={<AuthPage container={container}/>}/>
+        <Route path="/" element={<LoginComponent container={container}/>}/>
       </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

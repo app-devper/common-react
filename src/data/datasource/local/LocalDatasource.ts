@@ -5,6 +5,3 @@ export default interface LocalDataSource {
 
   clearToken(): Promise<boolean>;
 }
-
-
-
