@@ -17,7 +17,7 @@ export function LoginComponent (props: LoginComponentProps) {
     usernameQuery,
     isSignInButtonVisible,
     isSignOutButtonVisible,
-    onEmailQueryChanged,
+    onUsernameQueryChanged,
     onPasswordQueryChanged,
     onClickSignIn,
     onClickSignOut
@@ -38,7 +38,7 @@ export function LoginComponent (props: LoginComponentProps) {
             type="text"
             placeholder="username"
             onChange={(e: React.FormEvent<HTMLInputElement>): void => {
-              onEmailQueryChanged(e.currentTarget.value)
+              onUsernameQueryChanged(e.currentTarget.value)
             }}
             value={usernameQuery}
             className="form-control"

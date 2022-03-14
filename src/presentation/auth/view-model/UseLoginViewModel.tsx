@@ -9,7 +9,6 @@ const useLoginViewModel = (loginUseCase: LoginUseCase) => {
   const [errorMessage, setErrorMessage] = useState('')
   const [authStatus, setAuthStatus] = useState('is not authorized')
   const [isAuthStatusPositive, setAuthStatusPositive] = useState(false)
-
   const [isShowError, setShowError] = useState(false)
 
   const onUsernameQueryChanged = (username: string): void => {
@@ -83,7 +82,7 @@ const useLoginViewModel = (loginUseCase: LoginUseCase) => {
     passwordQuery,
     isSignInButtonVisible,
     isSignOutButtonVisible,
-    onEmailQueryChanged: onUsernameQueryChanged,
+    onUsernameQueryChanged,
     onPasswordQueryChanged,
     onClickSignIn,
     onClickSignOut
